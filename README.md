@@ -2,7 +2,10 @@
 
 ## 1002 수업내용
 
-
+1. App router ? [y/n] . y !
+2. src ? [y/n] . y !
+3. appR 
+4. dir name -> segment
 
 ## 0925 수업내용
 
