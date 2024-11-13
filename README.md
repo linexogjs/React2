@@ -2,6 +2,64 @@
 
 # 202230213 박태헌
 
+## 1113 수업내용
+1. UI 라이브러리
+    - UI 라이브러리, 프레임워크, 유틸리티 기능이 필수는 아닙니다.
+    - 다만 생산성 향상 및 UI의 일관성을 유지하는데 많은 도움을 받을 수 있습니다.
+    - 이번 장에서는 다음 3가지의 프레임워크에 관해 간단히 알아 봅니다.
+    - Chakra UI
+    - TailwindCSS
+    - Headless UI
+2. Chakra UI
+    - 오픈소스 컴포넌트 라이브러리, 모듈화 되어있고 접근성이 뛰어나며 보기 좋은 UI를 만들 수 있습니다.
+    - 버튼, 모달, 입력 등 다양한 내장 컴포넌트를 제공합니다.
+    - dark mode 및 light mode를 모두 지원합니다.
+    - Chakra UI의 useColorMode 훅을 사용해서 현재 사용하는 컬러 모드를 확인할 수 있습니다.
+    - 기본 컴포넌트를 조합해서 새로운 컴포넌트를 쉽게 만들 수 있습니다.
+    - 타입 스크립트로 작성되었으며 개발자에게 ..
+3. Tailwind CSS
+    - 다른 프레임워크와는 다르게 CSS 규칙만을 제공합니다.
+    - 자바스크립트 모듈이나 리액트 컴포넌트를 제공하지 않기 때문에 필요한 경우 직접 만들어서 사용해야 합니다.
+    - 변수값을 조정하여 개성있는 디자인을 만들 수 있습니다. 디자인의 자유도가 높습니다.
+    - dark mode및 light mode를 쉽게 적용할 수 있습니다.
+    - 빌드 시점에 사용하지 않는 클래스는 제거되기 때문에 높은 수준의 최적화를 지원합니다.
+    - CSS 클래스의 접두사를 활용해서 모바일, 데스크톱, 태블릿 화면에서 원하는 규칙을 지정할 수 있습니다. sm(640px), md(1024px), xl(1280px), 1xl(1536px)
+4. Headless UI 
+    - TailwindCSS를 만든 Tailwind Labs 팀의 무료 오픈소스 프로젝트입니다.
+    - TailwindCSS는 웹 컴포넌트 안에서 사용할 수 있는 CSS 클래스만 제공합니다.
+    - 따라서 모달이나 버튼 등 동적인 컴포넌트를 만들려면 직접 자바스크립트 코드를 작성해야 합니다.
+    - 이런 단점을 보완하기 위해서 Headles UI가 탄생했습니다.
+    - Headless Ui은 CSS 클래스를 제공하는 것이 아니라 동적 컴포넌트만 제공합니다.
+    - 교재에는 TailwindCSS와 Headless Ui 모두 설치하고 사용하게 되어 있으나...공식 사이트에는...
+
+1. Project 생성
+    - Tailwind 사용을 위해 프로젝트를 다시 생성합니다.
+    - 프로젝트를 다시 생성하지 않고 설정할 수도 있지만, 과정이 다소 복잡합니다.
+        - 교재에도 설정 방법이 나와 있습니다.
+    - 프로젝트느 Next.js 14로 합니다.
+    - 15.0.2 버전이 릴리즈 되어 있으나 아직 Tailwind와의 호환성이 안정적이지 않습니다.
+    - $ npx create-next-app@14
+    - 프로젝트 이름은 자유로 하고, 나머지는 모두 yes로 합니다.
+2. Tailwind CSS 
+    - Tailwind는 React를 기준으로 하고 있어서 바로 코드를 사용하면 오류가 발생할 수 있습니다.
+    - Test 코드는 tailwindcss.com에 나와있는 것이 오류가 적습니다.
+    - tailwindcss.com의 Doc를 참고하여 Test해 봅니다.
+    - class도 className으로 수정해야 합니다.
+3. Headless UI
+    - 구글에서 headless UI를 검색하고 사이트 접속
+4. Chakur UI
+    - 구글에서 Chakur Ui를 검색하고 사이트 접속
+    - Home 화면에서 Start Building 버튼을 클릭하고 Next.js를 선택합니다.
+    - App/chakra/page.js 파일을 생성합니다.
+    - 지시대로 설치합니다.
+    - Snippets를 설치하면 src/components/ui 아래 추가 component가 설치됩니다.
+    - Layout에 provider를 설정합니다.
+    - tsconfig 설정을 확인해 봅니다. 전부 설정되어 있으나 없는 것이 있으면 추가해 줍니다.
+    - next.config.mjs를 수정해 줍니다.
+    - Component 메뉴에서 Accordion을 테스트합니다.
+    
+
+
 ## 1106 수업내용
 1. Styled JSX
     - Styled JSX는 CSS-in-JS 라이브러리 입니다. 내장 모듈이기 때문에 설치가 필요 없습니다.
