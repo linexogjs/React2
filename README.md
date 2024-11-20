@@ -3,6 +3,53 @@
 # 202230213 박태헌
 
 ## 1120 수업내용
+1. Props 흐름의 이해
+    - Next.js의 데이터 흐름은 단방향으로 이루어집니다.
+    - 즉, parents에서 child component의 방향으로 props의 흐름이 이루어 집니다.
+    - 따라서 계층 구조가 복잡해 지면 Props Drilling 문제가 발생합니다.
+    - Props Drilling은 여러 개의 Component를 지나 props가 전달되면서 발생하는 문제입니다.
+    - Props Drilling은 다음과 같은 문제를 발생시킬 수 있습니다.
+    1. 중간에 위치한 component에 불필요한 props를 전달해야 하는 문제.
+    2. 타겟 component까지 props가 전달되지 않을 경우 원인 규명의 어려움
+    3. 필요 이상으로 코드가 복잡해지는 문제
+    4. 이런 문제를 해결하려면 props를 전역으로 사용하면 됩니다.
+    5. Next.js에서 props를 전역으로 사용하기 위해서 Context API, Redux 등을 사용합니다.
+    - ComponentA, B, C, props-flow 페이지 상호간에는 계층구조를 가지고 있지 않습니다.
+    - 아직 어느 쪽에서도 component 호출하지 않았기 때문입니다.
+    - 그러나 어느 쪽이든 component를 호출 하는 순간, 호출한 쪽은 parent가 되고, 호출 받은 쪽은 child가 됩니다.
+    - 이 것은 component간, component와 page간 모두에 적용됩니다.
+    - 관계가 한번 성립되면 child가 parent를 호출할 수는 없습니다.
+    - 예를 들어 A가 B를 호출한 경우, A는 parent, B는 child가 됩니다.
+    - 이 관계는 아직 아무도 호출하지 않거나, 호출 받지 않은 C에게는 적용되지 않습니다.
+    - 즉, C는 A, B 모두 호출할 수 있게 됩니다. 이 경우 C가 parent, A와 B가 child가 됩니다.
+    - A와 B의 관계, C와 A, B의 관계가 공존하게 됩니다.
+    - A는 B만 호출 할 수 있고, C는 AB 모두를 호출 할 수 있으며 그 반대는 불가능합니다.
+    - 그리고 B는 아무것도 호출할 수 없고, A는 C를 호출할 수 없는 관계가 됩니다.
+2. Context API 개요
+    - Context는 UX구축에 많이 사용되는 React의 기능입니다.
+    - React는 16.3 버전부터 정식적으로 context api를 지원하고 있습니다.
+    - 일반적으로 props는 부모에서 자식으로 전달되는 단방향 통신을 합니다.
+    - context API는 특정 component가 props를 사용하지 않고, 하위 component를 포함한 모든 component에 데이터를 공유할 수 있는 기능을 제공합니다.
+    - 즉 "전역"으로 데이터를 사용할 수 있도록 해줍니다.
+    - 예를 들어 사용자의 로그인 상태나, 쇼핑커트의 물품 수량 등을 표시할 때 사용합니다.
+    - Context API는 createContext, Provider, useContext 개념만 알면 적용이 가능합니다.
+    - 간혹 Consumer를 useContext대신 사용하는 경우가 있지만, function형 component에서는 많이 사용하지 않습니다.
+    - 두가지 차이는 다음과 같습니다.
+    - consumer 
+        - 클래스형, 함수형 컴포넌트 모두 사용가능
+        - JSX 내에서 명시적으로 작성
+        - 클래스형 컴포넌트와의 호환성
+        - JSX 내에 추가적인 요소가 필요
+        - 코드가 다소 복잡해 보일 수 있음
+    - useContext
+        - 함수형 컴포넌트에서 주로 사용
+        - Hook으로 간결하게 사용
+        - 간결하고 직관적인 코드 작성
+        - 함수형 컴포넌트와의 자연스러운 통합
+        - 클래스형 컴포넌트에선 사용할 수 없음
+    - Context API를 이용한 다크모드 토글 예제를 통해 context의 사용법에 관해 알아 보도록 하겠습니다.
+    
+    
 
 
 
