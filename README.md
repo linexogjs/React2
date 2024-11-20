@@ -48,10 +48,59 @@
         - 함수형 컴포넌트와의 자연스러운 통합
         - 클래스형 컴포넌트에선 사용할 수 없음
     - Context API를 이용한 다크모드 토글 예제를 통해 context의 사용법에 관해 알아 보도록 하겠습니다.
-    
-    
-
-
+2. Context API - use client
+    - 앞에서 작성한 코드 상단에 'use client' 지시문이 있습니다.
+    - Next.js에서 'use client'를 사용하는 이유는 서버 컴포넌트와 클라이언트 컴포넌트를 구분하기 위해서 입니다.
+    - Next.js는 기본적으로 서버에서 렌더링하도록 설계되어, 클라이언트에서만 필요한 컴포넌트를 명시적으로 지정해야할 필요가 있습니다.
+3. Directory 구조
+    - 디렉토리 운영방법 및 주요 파일의 역할 알아보고 실습을 진행.
+    - [Directory]
+        - app : Routing Page 관리
+        - components : 재사용 가능한 공통 컴포넌트 관리
+        - context : context 컴포넌트 관리
+        - features : 기능별 컴포넌트 관리
+        - store : Redux store 설정 파일 관리
+        - styles : CSS, Sass 등 스타일 파일 관리    
+    - components vs. features Directory
+    - [components Directory]
+        - 애플리케이션 전반에서 재사용될 수 있는 공통 컴포넌트를 보관합니다.
+        - 특정 기능에 종속되지 않으며, 다양한 페이지나 기능에서 재사용할 수 있는 component를 모아 둡니다.
+    - [features Directory]
+        - 특정 기능이나 도메인 별로 코드를 구성하는 데 사용합니다.
+        - 사용자 인증 기능, 프로필 관리 기능 등 각 기능과 관련된 상태 관리, API요청, 슬라이스, 컴포넌트 등을 보관합니다.
+        - 재 사용이 불가능하거나 가능하더라도 많은 수정을 해야하는 컴포넌트를 관리합니다.
+    - [Redux Slice]
+        - Slice는 Redux Toolkit에서 사용되는 용어로, 특정 기능과 관련된 상태와 reducer 함수의 모음을 나타냅니다.
+        - Slice 라는 이름은 애플리케이션 상태의 한 부분을 의미합니다.
+        - Redux Toolkit의 createSlice 함수를 사용하면 특정 기능과 관련된 상태, 액션, reducer를 한 곳에서 정의할 수 있어 관리하기가 용이합니다.
+    - [Redux Provider]
+        - Redux Provider는 Redux의 상태 등을 공급하기 위한 파일입니다.
+        - Provider는 사용하고자 하는 page에서 사용하면 됩니다.
+        - 다만 전역적으로 사용할 때 layout 파일에 정의하면 'use client'를 사용해야 하기 때문에 별도의 component로 만들어서 사용하는 것이 좋습니다.
+4. Context API vs Redux
+    - [Context API]
+        - React에서 기본으로 제공하는 상태 관리 도구로, 외부 라이브러리 설치 없이 사용 가능합니다.
+        - Context API는 주로 전역 상태를 관리하는데 사용됩니다.
+        - React.createContext()로 생성한 Context 객체와 Provider 컴포넌트를 사용해 상태를 하위 컴포넌트에 전달합니다.
+            - (장점)
+                - 간단하고 가볍다 : 외부 라이브러리 설치 없이 기본 React 기능만으로 전역 상태 관리를 할 수 있습니다.
+                - 적은 설정 필요 : 간단한 구조를 가지고 있어 설정과 사용이 간편합니다.
+                - 컴포넌트 트리의 깊이 제한 없음 : 여러 단계에 걸쳐 상태를 전파할 수 있어 prop drilling 문제를 해결합니다.
+            - (단점)
+                - 복잡한 상태 관리에 한계 : 상태가 복잡하거나 다양한 액션을 통해 변경이 이루어져야 하는 경우, 관리가 어려워질 수 있습니다.
+                - 성능 문제 : 상태가 업데이트 되면 해당 상태를 사용하는 모든 하위 컴포넌트가 다시 렌더링되므로, 상태 범위가 넓을 경우 성능에 영향을 미칠 수 있습니다.
+                - 디버깅 도구 부족 : 상태 변경 과정을 추적하고 관리하는 Redux DevTools와 같은 도구가 기본적으로 제공되지 않습니다.
+    - [Redux ]
+        - Redux는 전역 상태를 관리하기 위한 독립적인 state 관리 라이브러리 입니다.
+        - 상태의 변경을 예측 가능하게 하고, 전역 state 관리를 더 구조적으로 지원합니다.
+        - store, reducer, action 등의 개념을 사용해 state와 state dispatch를 관리합니다.
+            - (장점)
+                - 명확한 상태 관리 구조 : 액션과 reducer를 통해 state dispatch 과정을 예측 가능하게 만들고, 코드의 가독성을 높입니다.
+                - 미들웨어 지원 : redux-thunk, redux-saga와 같은 미들웨어를 사용해 비동기 로직을 쉽게 처리할 수 있습니다.
+                - 디버깅 도구 : Redux DevTools를 통해 상태 변화 및 디버깅이 용이합니다.
+                - 모든 프레임워크와 호환 : React뿐만 아니라 다른 JavaScript 프레임워크와도 함께 사용할 수 있습니다.
+            - (단점)
+                - 
 
 ## 1113 수업내용
 1. UI 라이브러리
