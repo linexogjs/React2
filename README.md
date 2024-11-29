@@ -2,6 +2,14 @@
 
 # 202230213 박태헌
 
+## 1129 수업내용
+1. GitHub Pages 기본 저장소 생성
+    - 내용은 없어도 됩니다.
+    - 이 저장소는 기본적인 GitHub Page로 이 곳에 정적 페이지를 올리고 서비스 운영을 할 수 있습니다.
+2. 공용 PC GitHub 인증 제거 및 등록
+
+
+
 ## 1127 수업내용
 1. Redux 
     2. counterSlice 파일을 생성
@@ -13,8 +21,6 @@
         - useSelector는 Redux Store의 상태를 선택(조회)하는 데 사용됩니다.
         - 컴포넌트 내부에서 이 Hook을 사용하면 Redux store 필요한 state를 가져와 사용할 수 있습니다.
         - useDispatch는 Redux...
-    
-        
 
 ## 1120 수업내용
 1. Props 흐름의 이해
